@@ -7,7 +7,7 @@ Users will be able to create and share their own and favorited scenarios, charac
 
 
 
-<h2>Personas<h2>
+Personas
 
 Name: The Dread Warlock Malchor
 
