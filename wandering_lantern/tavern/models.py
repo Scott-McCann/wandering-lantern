@@ -1,5 +1,7 @@
 from django.db import models
 from .level import *
+from django.contrib.auth.models import User
+from datetime import date
 
 # Create your models here.
 
@@ -84,7 +86,7 @@ class Feats(models.Model):
     )
 
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.name
 
@@ -131,7 +133,7 @@ class Race(models.Model):
     Languages = models.ManyToManyField(Languages)
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     description = models.TextField(null=True)
-
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.name
 
@@ -182,6 +184,7 @@ class Class(models.Model):
     )
     description = models.TextField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -270,6 +273,7 @@ class Character(models.Model):
     wisdom = models.PositiveSmallIntegerField(default=10)
     charisma = models.PositiveSmallIntegerField(default=10)
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -297,6 +301,7 @@ class RaceFeatures(models.Model):
     description = models.TextField()
     f_race = models.ForeignKey(Race, on_delete=models.SET_NULL, null=True)
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -319,6 +324,7 @@ class ClassFeatures(models.Model):
     description = models.TextField()
     f_class = models.ForeignKey(Class, on_delete=models.SET_NULL, null=True)
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -372,6 +378,7 @@ class Spells(models.Model):
     component_desc = models.TextField()
     description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
 
     def __str__(self):
@@ -447,6 +454,7 @@ class MeleeWeapon(models.Model):
     weight = models.IntegerField(default=3)
     description = models.TextField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -513,6 +521,7 @@ class RangedWeapon(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     Denomination = models.CharField(max_length=256, choices=COIN_CHOICE, default=GOLD)
     weight = models.PositiveIntegerField(default=20)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -550,8 +559,8 @@ class Armor(models.Model):
     cost = models.PositiveIntegerField(default=40)
     Denomination = models.CharField(max_length=256, choices=COIN_CHOICE, default=GOLD)
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-
     weight = models.PositiveIntegerField(default=20)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
 
     def __str__(self):
@@ -575,3 +584,7 @@ class Item(models.Model):
     weight = models.PositiveIntegerField(default=2)
     description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.name
