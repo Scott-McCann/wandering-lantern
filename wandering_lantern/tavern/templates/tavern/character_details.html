@@ -1,0 +1,12 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}Character{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{character.name}}</h1>
+    <h3>Submitted by: {{character.user}}</h3>
+    <h5>Created: {{character.date_created}} </h5>
+</article>
+
+{% endblock %}

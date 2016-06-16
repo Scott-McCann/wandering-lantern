@@ -1,0 +1,12 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}Melee Weapon{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{melee_weapon.name}}</h1>
+    <h3>Submitted by: {{melee_weapon.user}}</h3>
+    <h5>Created: {{melee_weapon.date_created}} </h5>
+</article>
+
+{% endblock %}

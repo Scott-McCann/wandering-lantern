@@ -1,0 +1,25 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}melee_weapons{% endblock %}
+
+{% block content %}
+<h1>Melee Weapons</h1>
+
+<p>Showing {{ melee_weapons|length }} melee weapons</p>
+
+
+{% if melee_weapons %}
+<ul>
+  {% for melee_weapon in melee_weapons %}
+  <li>
+     <a href="{% url 'tavern:melee_weapon_details' melee_weapon.id %}">
+       {{melee_weapon.name}}
+     </a>
+  </li>
+
+{% endfor %}
+</ul>
+{% endif %}
+
+
+{% endblock %}

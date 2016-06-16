@@ -1,0 +1,25 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}characters{% endblock %}
+
+{% block content %}
+<h1>Characters</h1>
+
+<p>Showing {{ characters|length }} characters</p>
+
+
+{% if characters %}
+<ul>
+{% for character in characters %}
+  <li>
+     <a href="{% url 'tavern:character_details' character.id %}">
+       {{character.name}}
+     </a>
+  </li>
+
+{% endfor %}
+</ul>
+{% endif %}
+
+
+{% endblock %}
