@@ -5,6 +5,11 @@ from datetime import date
 
 # Create your models here.
 
+class Abilities(models.Model):
+    name = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
 
 class SkillProficiencies(models.Model):
     name = models.CharField(max_length=256)
@@ -84,7 +89,7 @@ class Feats(models.Model):
         choices=ATTR_CHOICES,
         null=True
     )
-
+    description=models.TextField(default="description")
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     def __str__(self):
@@ -246,6 +251,12 @@ class Character(models.Model):
         (SAGE, 'Sage'),
         (SOILDER, 'Soilder')
     )
+    background = models.CharField(
+        max_length=256,
+        choices=BACKGROUND_CHOICES,
+        default=NOBLE
+    )
+
     name = models.CharField(max_length=256)
     age = models.PositiveSmallIntegerField(default=25, null=False)
     hair_color = models.CharField(max_length=256)
@@ -257,6 +268,7 @@ class Character(models.Model):
         blank=True,
         null=True
         )
+
     height = models.CharField(max_length=256)
     experience_points = models.PositiveIntegerField()
     languages = models.CharField(max_length=256)
@@ -274,6 +286,12 @@ class Character(models.Model):
     charisma = models.PositiveSmallIntegerField(default=10)
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    level = models.IntegerField(
+        choices=CHOICES,
+        default=ONE,
+        null=False
+    )
+
 
     def __str__(self):
         return self.name
@@ -335,11 +353,34 @@ class ClassFeatures(models.Model):
 
 
 class Spells(models.Model):
+    ZERO = '0'
+    ONE = '1'
+    TWO = '2'
+    THREE = '3'
+    FOUR ='4'
+    FIVE = '5'
+    SIX = '6'
+    SEVEN = '7'
+    EIGHT = '8'
+    NINE = '9'
+
+    SPELL_LEVEL_CHOICES= (
+        (ZERO, '0'),
+        (ONE, '1'),
+        (TWO, '2'),
+        (THREE, '3'),
+        (FOUR, '4'),
+        (FIVE, '5'),
+        (SIX, '6'),
+        (SEVEN, '7'),
+        (EIGHT, '8'),
+        (NINE, '9')
+    )
 
     level = models.CharField(
         max_length=256,
-        choices=CHOICES,
-        default=ONE,
+        choices=SPELL_LEVEL_CHOICES,
+        default=ZERO,
         null=False,
     )
 
@@ -367,19 +408,16 @@ class Spells(models.Model):
         null=False
     )
 
-
     name = models.CharField(max_length=256)
     duration = models.CharField(max_length=256)
     casting_time = models.CharField(max_length=256)
     range = models.CharField(max_length=256, null=True)
-    v = models.BooleanField()
-    s = models.BooleanField()
-    m = models.BooleanField()
+    components = models.CharField(max_length = 10, null=True)
     component_desc = models.TextField()
     description = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-
+    spell_class = models.ForeignKey(Class, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -567,7 +605,49 @@ class Armor(models.Model):
         return self.name
 
 
+class MagicItem(models.Model):
+    ARMOR = 'Armor'
+    POTION = 'Potion'
+    RING = 'Ring'
+    ROD = 'Rod'
+    SCROLL = 'Scroll'
+    STAFF = 'Staff'
+    WAND = 'Wand'
+    WEAPON = 'Weapon'
+    WONDROUS = 'Wondrous Item'
+    MAGIC_ITEM_TYPE = (
+        (ARMOR, 'Armor'),
+        (POTION, 'Potion'),
+        (RING, 'Ring'),
+        (ROD, 'Rod'),
+        (SCROLL, 'Scroll'),
+        (STAFF, 'Staff'),
+        (WAND, 'Wand'),
+        (WEAPON, 'Weapon'),
+        (WONDROUS, 'Wondrous Item')
+    )
 
+    COMMON = 'Common'
+    UNCOMMON = 'Uncommon'
+    RARE = 'Rare'
+    VERYRARE = 'Very Rare'
+    LEGENDARY = 'Legendary'
+    RARITY_CHOICE = (
+        (COMMON, 'Common'),
+        (UNCOMMON, 'Uncommon'),
+        (RARE, 'Rare'),
+        (VERYRARE, 'Very Rare'),
+        (LEGENDARY, 'Legendary')
+    )
+
+
+    name = models.CharField(max_length=256, null=False, default='Magic Item')
+    type = models.CharField(max_length=256, choices=MAGIC_ITEM_TYPE, null=False, default=WONDROUS)
+    rarity = models.CharField(max_length=256, choices=RARITY_CHOICE, null=False, default=RARE)
+    attunement = models.CharField(max_length=256, null=True, blank=True)
+    notes = models.CharField(max_length=1000, null=True, blank=True)
+    source = models.CharField(max_length=256, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class Item(models.Model):
     COPPER = 'cp'
