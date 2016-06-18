@@ -1,0 +1,43 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}ranged_weapons{% endblock %}
+
+{% block content %}
+<h1>Ranged Weapons</h1>
+
+<p>Showing {{ ranged_weapons|length }} ranged weapons</p>
+
+
+{% if ranged_weapons %}
+
+<div class="table-responsive" style="background-color:lightgrey;">
+  <table class="table table-striped">
+    <tr class="black-and-white">
+      <th>Name</th>
+      <th>Type</th>
+      <th>Damage</th>
+      <th>Cost</th>
+      <th>weight</th>
+    </tr>
+      {% for ranged_weapon in ranged_weapons %}
+    <tr>
+      <td> <a href="{% url 'tavern:ranged_weapon_details' ranged_weapon.id %}">
+      {{ranged_weapon.name}}</a></td>
+      <td>{{ranged_weapon.type}}</td>
+      <td>{{ranged_weapon.hit_die}} {{ranged_weapon.damage_type}}</td>
+      <td>{{ranged_weapon.cost}} {{ranged_weapon.Denomination}}</td>
+      <td>{{ranged_weapon.weight}}</td>
+      </tr>
+
+
+
+
+
+{% endfor %}
+  </table>
+</div>
+
+{% endif %}
+
+
+{% endblock %}

@@ -5,7 +5,9 @@ from .models import (Character, MeleeWeapon, RangedWeapon, Armor, Item,
  Spells, Class, Race)
 
 def view_index(request):
+
     return render(request, 'tavern/index.html')
+
 #Charcter Views
 def view_characters(request):
 
@@ -29,7 +31,7 @@ def view_character_details(request, character_id):
                 'next_id': next_id,
                 'previous_id': previous_id}
 
-    return render(request, 'character_details.html', context)
+    return render(request, 'tavern/character_details.html', context)
 
 #TODO Character Forms
 
@@ -57,7 +59,7 @@ def view_race_details(request, race_id):
                 'next_id': next_id,
                 'previous_id': previous_id}
 
-    return render(request, 'race_details.html', context)
+    return render(request, 'tavern/race_details.html', context)
 #TODO Race Forms
 
 #TODO Class Views
@@ -83,7 +85,7 @@ def view_class_details(request, class_id):
                 'next_id': next_id,
                 'previous_id': previous_id}
 
-    return render(request, 'class_details.html', context)
+    return render(request, 'tavern/class_details.html', context)
 #TODO Class Forms
 
 #TODO Armor Views
@@ -109,7 +111,7 @@ def view_armor_details(request, armor_id):
                 'next_id': next_id,
                 'previous_id': previous_id}
 
-    return render(request, 'armor_details.html', context)
+    return render(request, 'tavern/armor_details.html', context)
 
 #TODO Armor Forms
 
@@ -136,7 +138,7 @@ def view_item_details(request, item_id):
                 'next_id': next_id,
                 'previous_id': previous_id}
 
-    return render(request, 'item_details.html', contet)
+    return render(request, 'tavern/item_details.html', context)
 #TODO Item Forms
 
 # MeleeWeapon Views
@@ -166,38 +168,38 @@ def view_melee_weapon_details(request, meleeweapon_id):
 #TODO MeleeWeapon Forms
 
 #TODO RangedWeapon Views
-def view_ranged_weapon(request):
+def view_ranged_weapons(request):
 
-    ranged_weapon =  RangedWeapon.objects.all()
-    context = { 'ranged_weapon': ranged_weapon }
+    ranged_weapons = RangedWeapon.objects.all()
+    context = { 'ranged_weapons': ranged_weapons }
 
-    return render(request, 'tavern/ranged_weapon.html')
+    return render(request, 'tavern/ranged_weapons.html', context)
 
 def view_ranged_weapon_details(request, rangedweapon_id):
 
     try:
-        ranged_weapon = RangedWeapon.objects.get(id=ranged_weapon_id)
+        ranged_weapon = RangedWeapon.objects.get(id=rangedweapon_id)
     except ranged_weapon.DoesNotExist:
         raise http404('This ranged weapon has yet to be created.')
 
     all_things = RangedWeapon.objects.all()
-    next_id = get_next(all_things, ranged_weapon_id)
-    previous_id = get_previous(all_things, ranged_weapon_id)
+    next_id = get_next(all_things, rangedweapon_id)
+    previous_id = get_previous(all_things, rangedweapon_id)
 
     context = { 'ranged_weapon': ranged_weapon,
                 'next_id': next_id,
                 'previous_id': previous_id}
 
-    return render(request, 'ranged_weapon_details.html')
+    return render(request, 'tavern/ranged_weapon_details.html', context)
 #TODO RangedWeapon Forms
 
 #TODO Spell Views
-def view_spell(request):
+def view_spells(request):
 
     spell =  Spells.objects.all()
     context = { 'spell': spell }
 
-    return render(request, 'tavern/spell.html')
+    return render(request, 'tavern/spell.html', context)
 
 def view_spell_details(request, meleeweapon_id):
 
@@ -214,5 +216,5 @@ def view_spell_details(request, meleeweapon_id):
                 'next_id': next_id,
                 'previous_id': previous_id}
 
-    return render(request, 'spell_details.html')
+    return render(request, 'tavern/spell_details.html', context)
 #TODO Spell Forms

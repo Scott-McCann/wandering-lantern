@@ -1,0 +1,53 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}Ranged Weapon{% endblock %}
+
+{% block content %}
+<article>
+
+<h1>{{ranged_weapon.name}}</h1>
+
+<div class="table-responsive" style="background-color:lightgrey;">
+  <table class="table table-striped">
+    <tr style="background-color:black; color:white">
+      <th>Type</th>
+      <th>Damage</th>
+      <th>Properties</th>
+      <th>Cost</th>
+      <th>Range(n,l)</th>
+      <th>weight</th>
+      <th>description</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>{{ranged_weapon.type}}</td>
+      <td>{{ranged_weapon.hit_die}} {{ranged_weapon.damage_type}}</td>
+
+      <td>
+        {% if ranged_weapon.properties %}
+        {% for property in ranged_weapon.properties.all %}
+        {{property.name}}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+      </td>
+
+      <td>{{ranged_weapon.cost}} {{ranged_weapon.Denomination}}</td>
+      <td>{{ranged_weapon.range}}</td>
+      <td>{{ranged_weapon.weight}}</td>
+      <td>{{ranged_weapon.description}}</td>
+      </tr>
+    </ul>
+  </table>
+</div>
+
+
+
+
+
+
+    <h3>Submitted by: {{ranged_weapon.user}}</h3>
+    <h5>Created: {{ranged_weapon.date_created}} </h5>
+</article>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (SkillProficiencies, SimpleMelee, SimpleRanged, MartialMelee,
 MartialRanged, ArmorProficiency, Languages, Feats, Race, Class, Character, RaceFeatures,
-ClassFeatures, Spells, MeleeWeapon, RangedWeapon, WeaponProperties, Armor, Item)
+ClassFeatures, Spells, MeleeWeapon, RangedWeapon, WeaponProperties, Armor, Item, MagicItem, Abilities)
 
 admin.site.register(SkillProficiencies)
 admin.site.register(SimpleMelee)
@@ -22,6 +22,8 @@ admin.site.register(RangedWeapon)
 admin.site.register(Armor)
 admin.site.register(Item)
 admin.site.register(WeaponProperties)
+admin.site.register(MagicItem)
+admin.site.register(Abilities)
 
 
 # Register your models here.

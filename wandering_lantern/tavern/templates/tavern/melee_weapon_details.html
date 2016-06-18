@@ -4,7 +4,47 @@
 
 {% block content %}
 <article>
-    <h1>{{melee_weapon.name}}</h1>
+
+<h1>{{melee_weapon.name}}</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped; table-bordered" style="background:lightgrey">
+    <tr style="background-color:black; color:white">
+      <th>Type</th>
+      <th>Damage</th>
+      <th>Properties</th>
+      <th>Cost</th>
+      <th>Range(n,l)</th>
+      <th>weight</th>
+      <th>description</th>
+    </tr>
+    <tr>
+      <td>{{melee_weapon.type}}</td>
+      <td>{{melee_weapon.hit_die}} {{melee_weapon.damage_type}}</td>
+
+      <td>
+        {% if melee_weapon.properties %}
+        {% for property in melee_weapon.properties.all %}
+        {{property.name}}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+      </td>
+
+      <td>{{melee_weapon.cost}} {{melee_weapon.Denomination}}</td>
+      <td>{{melee_weapon.range}}</td>
+      <td>{{melee_weapon.weight}}</td>
+      <td>{{melee_weapon.description}}</td>
+      </tr>
+    </ul>
+  </table>
+</div>
+
+
+
+
+
+
     <h3>Submitted by: {{melee_weapon.user}}</h3>
     <h5>Created: {{melee_weapon.date_created}} </h5>
 </article>
