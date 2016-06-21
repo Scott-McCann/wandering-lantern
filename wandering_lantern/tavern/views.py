@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import Http404
-from .utils import get_next, get_previous
+from .utils import get_next, get_previous, Die
 from .models import (Character, MeleeWeapon, RangedWeapon, Armor, Item,
- Spells, Class, Race)
+ Spells, Class, Race, ClassFeatures)
 
 def view_index(request):
 
@@ -29,7 +29,7 @@ def view_character_details(request, character_id):
 
     context = { 'character': character,
                 'next_id': next_id,
-                'previous_id': previous_id}
+                'previous_id': previous_id }
 
     return render(request, 'tavern/character_details.html', context)
 
@@ -48,7 +48,7 @@ def view_race_details(request, race_id):
 
     try:
         race = Race.objects.get(id=race_id)
-    except char.DoesNotExist:
+    except race.DoesNotExist:
         raise http404('This race has yet to be created.')
 
     all_things = Race.objects.all()
@@ -57,44 +57,46 @@ def view_race_details(request, race_id):
 
     context = { 'race': race,
                 'next_id': next_id,
-                'previous_id': previous_id}
+                'previous_id': previous_id }
 
     return render(request, 'tavern/race_details.html', context)
 #TODO Race Forms
 
 #TODO Class Views
-def view_class(request):
+def view_classes(request):
 
-    Class = Class.objects.all()
-    context = { 'class': Class }
+    Classes = Class.objects.all()
+    context = { 'classes': Classes }
 
-    return render(request, 'tavern/class.html', context)
+    return render(request, 'tavern/classes.html', context)
 
 def view_class_details(request, class_id):
 
     try:
-        Class = Class.objects.get(id=class_id)
-    except char.DoesNotExist:
+        cLass = Class.objects.get(id=class_id)
+    except cLass.DoesNotExist:
         raise http404('This class has yet to be created.')
 
+    features = ClassFeatures.objects.all()
     all_things = Class.objects.all()
     next_id = get_next(all_things, class_id)
     previous_id = get_previous(all_things, class_id)
 
-    context = { 'class': Class,
+    context = { 'class': cLass,
                 'next_id': next_id,
-                'previous_id': previous_id}
+                'previous_id': previous_id,
+                'features': features }
 
     return render(request, 'tavern/class_details.html', context)
 #TODO Class Forms
 
 #TODO Armor Views
-def view_armor(request):
+def view_armors(request):
 
-    armor =  Armor.objects.all()
-    context = { 'armor': armor }
+    armors =  Armor.objects.all()
+    context = { 'armors': armors }
 
-    return render(request, 'tavern/armor.html', context)
+    return render(request, 'tavern/armors.html', context)
 
 def view_armor_details(request, armor_id):
 
@@ -109,7 +111,7 @@ def view_armor_details(request, armor_id):
 
     context = { 'armor': armor,
                 'next_id': next_id,
-                'previous_id': previous_id}
+                'previous_id': previous_id }
 
     return render(request, 'tavern/armor_details.html', context)
 
@@ -136,7 +138,7 @@ def view_item_details(request, item_id):
 
     context = { 'item': item,
                 'next_id': next_id,
-                'previous_id': previous_id}
+                'previous_id': previous_id }
 
     return render(request, 'tavern/item_details.html', context)
 #TODO Item Forms
@@ -162,7 +164,7 @@ def view_melee_weapon_details(request, meleeweapon_id):
 
     context = { 'melee_weapon': melee_weapon,
                 'next_id': next_id,
-                'previous_id': previous_id}
+                'previous_id': previous_id }
 
     return render(request, 'tavern/melee_weapon_details.html', context)
 #TODO MeleeWeapon Forms
@@ -214,7 +216,40 @@ def view_spell_details(request, meleeweapon_id):
 
     context = { 'spell': spell,
                 'next_id': next_id,
-                'previous_id': previous_id}
+                'previous_id': previous_id }
 
     return render(request, 'tavern/spell_details.html', context)
+
 #TODO Spell Forms
+
+
+
+
+
+def view_dice_roller(request, roll=None):
+    D3 = Die.d3
+    D4 = Die.d4
+    D6 = Die.d6
+    D8 = Die.d8
+    D10 = Die.d10
+    D12 = Die.d12
+    D20 = Die.d20
+    D30 = Die.d30
+    D100 = Die.d100
+
+    context = { 'D3': D3,
+                'D4': D4,
+                'D6': D6,
+                'D8': D8,
+                'D10': D10,
+                'D12': D12,
+                'D20': D20,
+                'D30': D30,
+                'D100': D100,
+                'result': None
+    }
+
+    if roll:
+        context['result'] = context[roll]
+
+    return render(request, 'tavern/diceroller.html', context)

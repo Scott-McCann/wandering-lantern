@@ -20,7 +20,7 @@
 
 </head>
 
-<body background="{% static 'tavern/floral-old-paper-or-parchment.jpg' %}">
+<body background="{% static 'tavern/an-old-and-worn-parchment-paper-600x728.jpg' %}">
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -37,10 +37,10 @@
         <ul class="nav navbar-nav">
           <li><a href="{% url 'tavern:index' %}"></a>Home</li>
           <li><a href="{% url 'tavern:characters-index' %}">Characters</a></li>
+          <li><a href="{% url 'tavern:armors-index' %}">Armors</a></li>
           <li><a href="{% url 'tavern:melee_weapons-index' %}">Melee Weapons</a></li>
           <li><a href="{% url 'tavern:ranged_weapons-index' %}">Ranged Weapons</a></li>
           <li><a href="{% url 'tavern:items-index' %}">Items</a></li>
-          <li><a href="{% url 'tavern:characters-index' %}">Spells</a></li>
 
         </ul>
       </div><!--/.nav-collapse -->

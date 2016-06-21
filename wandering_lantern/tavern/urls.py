@@ -18,4 +18,16 @@ urlpatterns = [
     url(r'^items/$', views.view_items, name='items-index'),
     url(r'^item/(?P<item_id>[0-9]+)/$', views.view_item_details, name='item_details'),
 
+    url(r'^armors/$', views.view_armors, name='armors-index'),
+    url(r'^armor/(?P<armor_id>[0-9]+)/$', views.view_armor_details, name='armor_details'),
+
+    url(r'^classes/$', views.view_classes, name='classes-index'),
+    url(r'^class/(?P<class_id>[0-9]+)/$', views.view_class_details, name='class_details'),
+
+
+
+
+    url(r'^tools/diceroller/$', views.view_dice_roller, name='diceroller'),
+    url(r'^tools/diceroller/(?P<roll>D[0-9]+)$', views.view_dice_roller, name='diceroller-result'),
+
 ]

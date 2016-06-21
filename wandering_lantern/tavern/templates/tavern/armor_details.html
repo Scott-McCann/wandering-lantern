@@ -1,0 +1,34 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}]Armor{% endblock %}
+
+{% block content %}
+<article>
+
+<h1>{{armor.name}}</h1>
+
+<div class="table-responsive">
+  <table class="table table-striped; table-bordered" style="background:lightgrey">
+    <tr style="background-color:black; color:white">
+      <th>Cost</th>
+      <th>Weight</th>
+    </tr>
+    <tr>
+      <td>{{armor.cost}} {{armor.Denomination}}</td>
+      <td>{{armor.weight}}</td>
+      <tr>
+      <th>Description</th>
+      <td>{{armor.description}}</td>
+      </tr>
+  </table>
+</div>
+
+
+
+
+
+
+    <h3>Submitted by: {{armor.user}}</h3>
+    <h5>Created: {{armor.date_created}} </h5>
+</article>
+{% endblock %}

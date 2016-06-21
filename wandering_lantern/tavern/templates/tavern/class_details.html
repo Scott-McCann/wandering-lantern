@@ -1,0 +1,167 @@
+{% extends 'tavern/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Class{% endblock %}
+
+{% block content %}
+
+
+
+<section>
+  <div class="row">
+    <div class="col-md-4">
+    <img src="{% static 'tavern/fighter.jpg' %}" height="225" width="340">
+    </div>
+  <div class="col-md-4">
+    <h1>{{class.name}}</h1>
+    <h3>Hit Die: {{class.hit_die}}</h3>
+    <h3>Imporovement Levels: {{class.ability_score_improvement_levels}}</h3>
+  </div>
+</div>
+
+
+      <h2 style="background:black; color:white">Description</h2>
+      <div style="background:darkgrey; border-style:inset; border-color:darkred">
+      <p>Bacon ipsum dolor amet shoulder chicken pork voluptate dolore turducken veniam in eu aute laboris pork belly aliqua nostrud. Anim quis meatloaf jowl pork belly in ad porchetta lorem. Tempor tail quis tongue boudin capicola filet mignon. Tail non prosciutto picanha, sunt incididunt deserunt venison proident salami alcatra pariatur shoulder frankfurter. Velit et ex, proident ham hock minim strip steak pork chop biltong. Shank t-bone filet mignon jowl.
+
+Porchetta doner cupidatat fatback commodo. Dolore ipsum jowl in sunt shank proident sausage voluptate boudin pork beef ribs lorem irure. T-bone ribeye irure prosciutto. Nisi irure chuck, cupidatat ut bresaola cillum culpa. Ham hock venison meatloaf, jowl ball tip chuck turducken fatback kevin ham pig fugiat.
+
+Esse ham hock pork chop capicola. Esse leberkas lorem kielbasa consequat do alcatra kevin. Aliquip leberkas reprehenderit, et bresaola anim in do ut aute kevin magna ea. Cillum leberkas voluptate aute andouille. Tempor ea meatball, cupidatat ex adipisicing venison capicola beef ribs bacon proident dolore. Esse alcatra duis reprehenderit eu. Porchetta ex nostrud tenderloin voluptate.
+
+Incididunt biltong dolore, dolor bresaola kevin jowl strip steak sirloin qui short loin picanha. Laborum magna landjaeger bacon laboris. Duis exercitation kielbasa ut anim dolore kevin jowl short loin do strip steak. Eu prosciutto porchetta brisket spare ribs kevin, jowl beef. Jerky ut mollit nisi pork belly drumstick. Sirloin ullamco shankle quis in, sausage ribeye cow dolor excepteur labore do velit.
+
+Nisi pariatur short loin tri-tip occaecat filet mignon meatloaf ground round lorem shoulder turkey eu adipisicing deserunt nulla. Ham boudin duis ut, short loin meatball turkey ut. Do kevin corned beef picanha. Strip steak swine tenderloin, ut cupidatat culpa sunt pork belly pork shoulder cillum meatloaf short ribs.</p>
+    </div>
+
+</div>
+
+
+
+<div>
+  <div>
+    <table class="table table-bordered">
+      <tr style="background:black; color:white">
+        <th>Class Features</th>
+        <th>Level</th>
+      </tr>
+    {% for feature in features %}
+    <tr style="background:darkred; color:white">
+     <td>{{feature.name}}</td>
+     <td>{{feature.level}}</td>
+   </tr>
+   <tr style="background:darkgrey">
+     <td>{{feature.description}}</td>
+   </tr>
+
+     {% endfor %}
+   </table>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-md-3">
+      <table class="table table-bordered">
+        <tr style="background-color:black; color:white">
+          <th>Skill Proficiencies</th>
+        </tr>
+      {% for skill_prof in class.skill_prof.all %}
+        <tr>
+          <td>{{skill_prof.name}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    </div>
+
+    <div class="col-md-2">
+      <table class="table table-bordered">
+        <tr style="background-color:black; color:white">
+          <th>Simple Melee Proficiencies</th>
+        </tr>
+
+    {% for simple_melee_prof in class.simple_melee_prof.all %}
+    <tr>
+       <td>{{simple_melee_prof.weapon_type}}</td>
+     </tr>
+     {% endfor %}
+
+      </table>
+
+
+
+
+        <table class="table table-bordered">
+        <tr style="background-color:black; color:white">
+          <th>Martial Melee Proficiencies</th>
+        </tr>
+        {% for martial_melee_prof in class.martial_melee_prof.all %}
+        <tr>
+        <td>{{martial_melee_prof.weapon_type}}</td>
+      </tr>
+      {% endfor %}
+
+    </table>
+      </div>
+
+
+       <div class="col-md-2">
+         <table class="table table-bordered">
+           <tr style="background-color:black; color:white">
+             <th>Martial Ranged Proficiencies</th>
+           </tr>
+           {% for martial_ranged_prof in class.martial_ranged_prof.all %}
+           <tr>
+         <td>{{martial_ranged_prof.weapon_type}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+
+          <table class="table table-bordered">
+            <tr style="background-color:black; color:white">
+              <th>Simple Ranged Proficiencies</th>
+            </tr>
+          {% for simple_ranged_prof in class.simple_ranged_prof.all %}
+            <tr>
+          <td>{{simple_ranged_prof.weapon_type}}</td>
+        </tr>
+        {% endfor %}
+
+      </table>
+          </div>
+
+         <div class="col-md-2">
+           <table class="table table-bordered">
+             <tr style="background-color:black; color:white">
+               <th>Armor Proficiencies</th>
+             </tr>
+             {% for armor_prof in class.armor_prof.all %}
+             <tr>
+           <td>{{armor_prof.armor_type}}</td>
+         </tr>
+         {% endfor %}
+
+
+       </table>
+         </div>
+  </div>
+
+
+</section>
+
+
+
+
+
+    <h3>Submitted by: {{class.user}}</h3>
+    <h5>Created: {{class.date_created}} </h5>
+
+
+
+
+
+
+</article>
+
+{% endblock %}

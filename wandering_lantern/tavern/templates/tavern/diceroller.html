@@ -1,0 +1,42 @@
+{% extends 'tavern/base.html' %}
+
+
+{% block title %}Diceroller{% endblock %}
+
+{% block content %}
+<section>
+  <div class="row text-center">
+    <h1> Diceroller </h1>
+  </div>
+</section>
+<section>
+  <div class="row text-center" style="margin-bottom:30px">
+    <a class="col-md-4 btn btn-default" href="D3" role="button">D3</a>
+    <a class="col-md-4 btn btn-default" href="D4" role="button">D4</a>
+    <a class="col-md-4 btn btn-default" href="D6" role="button">D6</a>
+  </div>
+  <div class="row text-center" style="margin-bottom:30px">
+    <a class="col-md-4 btn btn-default" href="D8" role="button">D8</a>
+    <a class="col-md-4 btn btn-default" href="D10" role="button">D10</a>
+    <a class="col-md-4 btn btn-default" href="D12" role="button">D12</a>
+  </div>
+
+  <div class="row text-center" style="margin-bottom:30px">
+    <a class="col-md-4 btn btn-default" href="D20" role="button">D20</a>
+    <a class="col-md-4 btn btn-default" href="D30" role="button">D30</a>
+    <a class="col-md-4 btn btn-default" href="D100" role="button">D100</a>
+
+  </div>
+
+</section>
+
+
+{% if result %}
+<section class="text-center">
+  <div class="well">
+    <h3>result: {{result}}</h3>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
