@@ -1,0 +1,25 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}classes{% endblock %}
+
+{% block content %}
+<h1>Classes</h1>
+
+<p>Showing {{ classes|length }} classes</p>
+
+
+{% if classes %}
+<ul>
+{% for class in classes %}
+  <li>
+     <a href="{% url 'tavern:class_details' class.id %}">
+       {{class.name}}
+     </a>
+  </li>
+
+{% endfor %}
+</ul>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}Create Character{% endblock %}
+
+{% block content %}
+
+
+<form action="{% url 'tavern:create_character' %}" method="post">
+    {% csrf_token %}
+  <div class="col-md-5">
+    <h1>Create Character</h1>
+    <table class="table table-bordered table-striped" style="background:darkgrey">
+    {{ characterform.as_table }}
+  </table>
+  <input type="submit" name="{{characterform.prefix}}" value="Submit" />
+
+</div>
+<div class="col-md-5">
+  <h1>Add Feat</h1>
+    <table class="table table-bordered table-striped" style="background:darkgrey">
+    {{ featsform.as_table }}
+  </table>
+    <input type="submit" name="{{featsform.prefix}}" value="Submit" />
+  </div>
+</form>
+{% endblock %}

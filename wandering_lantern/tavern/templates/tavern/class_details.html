@@ -1,0 +1,164 @@
+{% extends 'tavern/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Class{% endblock %}
+
+{% block content %}
+
+
+
+<seciton>
+  <div class="row">
+    <div class="col-md-4">
+    <img src="{% static 'tavern/fighter.jpg' %}" height="225" width="340">
+    </div>
+  <div class="col-md-4">
+    <h1>{{class.name}}</h1>
+    <h3>Hit Die: {{class.hit_die}}</h3>
+    <h3>Imporovement Levels: {{class.ability_score_improvement_levels}}</h3>
+  </div>
+</div>
+
+
+      <h2 style="background:black; color:white">Description</h2>
+      <div style="background:darkgrey; border-style:inset; border-color:darkred; padding:10px">
+      <p>{{class.description}}</p>
+    </div>
+
+
+
+
+
+  <div>
+    <table class="table" style=" border-style:inset; border-color:darkred">
+      <tr style="background:black; color:white">
+        <th>Class Features</th>
+        <th>Level</th>
+      </tr>
+    {% for feature in features %}
+    <tr style="background:darkred; color:white">
+     <td>{{feature.name}}</td>
+     <td>{{feature.level}}</td>
+   </tr>
+   <tr style="background:darkgrey">
+     <td>{{feature.description}}</td>
+     <td></td>
+   </tr>
+
+     {% endfor %}
+   </table>
+  </div>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-3">
+      <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+        <tr style="background-color:black; color:white">
+          <th>Skill Proficiencies</th>
+        </tr>
+      {% for skill_prof in class.skill_prof.all %}
+        <tr>
+          <td>{{skill_prof.name}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    </div>
+
+    <div class="col-md-2">
+      <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+
+        <tr style="background-color:black; color:white">
+          <th>Simple Melee Proficiencies</th>
+        </tr>
+
+    {% for simple_melee_prof in class.simple_melee_prof.all %}
+    <tr>
+       <td>{{simple_melee_prof.weapon_type}}</td>
+     </tr>
+     {% endfor %}
+
+      </table>
+
+
+
+
+      <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+
+        <tr style="background-color:black; color:white">
+          <th>Martial Melee Proficiencies</th>
+        </tr>
+        {% for martial_melee_prof in class.martial_melee_prof.all %}
+        <tr>
+        <td>{{martial_melee_prof.weapon_type}}</td>
+      </tr>
+      {% endfor %}
+
+    </table>
+      </div>
+
+
+       <div class="col-md-2">
+         <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+
+           <tr style="background-color:black; color:white">
+             <th>Martial Ranged Proficiencies</th>
+           </tr>
+           {% for martial_ranged_prof in class.martial_ranged_prof.all %}
+           <tr>
+         <td>{{martial_ranged_prof.weapon_type}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+
+            <tr style="background-color:black; color:white">
+              <th>Simple Ranged Proficiencies</th>
+            </tr>
+          {% for simple_ranged_prof in class.simple_ranged_prof.all %}
+            <tr>
+          <td>{{simple_ranged_prof.weapon_type}}</td>
+        </tr>
+        {% endfor %}
+
+      </table>
+          </div>
+
+         <div class="col-md-2">
+           <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+
+             <tr style="background-color:black; color:white">
+               <th>Armor Proficiencies</th>
+             </tr>
+             {% for armor_prof in class.armor_prof.all %}
+             <tr>
+           <td>{{armor_prof.armor_type}}</td>
+         </tr>
+         {% endfor %}
+
+
+       </table>
+         </div>
+  </div>
+
+
+
+
+
+
+
+
+    <h3>Submitted by: {{class.user}}</h3>
+    <h5>Created: {{class.date_created}} </h5>
+
+
+
+
+
+
+</seciton>
+
+{% endblock %}

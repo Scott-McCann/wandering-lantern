@@ -1,0 +1,43 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}armors{% endblock %}
+
+{% block content %}
+<h1>Armors</h1>
+
+<p>Showing {{ armors|length }} Armors</p>
+
+
+{% if armors %}
+
+<div class="table-responsive" style="">
+  <table class="table table-striped  table-hover" style="background-color:lightgrey">
+    <tr style="background-color:black; color:white">
+      <th>Name</th>
+      <th>Armor Class</th>
+      <th>Disadvantage</th>
+      <th>Cost</th>
+      <th>weight</th>
+    </tr>
+      {% for armor in armors %}
+    <tr>
+      <td> <a href="{% url 'tavern:armor_details' armor.id %}">
+      {{armor.name}}</a></td>
+      <td>{{armor.armor_class}}</td>
+      <td>{{armor.disadvantage}}</td>
+      <td>{{armor.cost}}{{armor.Denomination}}</td>
+      <td>{{armor.weight}}</td>
+      </tr>
+
+
+
+
+
+{% endfor %}
+  </table>
+</div>
+
+{% endif %}
+
+
+{% endblock %}
