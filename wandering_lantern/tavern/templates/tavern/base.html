@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html lange="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,20 +46,53 @@
         </ul>
       </div><!--/.nav-collapse -->
     </div>
-  </nav>
 
-  <div class="container">
-    <div class="starter-template">
-      <p> Hello, {{ user.username }}</p>
+  </nav>
+         <!-- sidebar -->
+
+
+
+
+
+
+
+  <div class="container-md-12 col-xs-12" style="padding-left:0px;">
+    <div class="col-md-2 col-xs-2" id="sidebar" role="navigation" style="padding-left:0px; background:darkred">
+     <div data-spy="affix col-xs-2" data-offset-top="50">
+      <ul class="nav nav-pills nav-stacked text-center" id="sidebar-nav">
+        <h3 style="color:white">The Tavern</h3>
+        <li><a href="#">Tavern</a></li>
+        <li><a href="#section1">Spells</a></li>
+        <li><a href="#section2">Weapons</a></li>
+        <li><a href="#section3">Armors</a></li>
+        <li><a href="#section4">Items</a></li>
+        <li><a href="#section4">Classes</a></li>
+        <li><a href="#section4">Races</a></li>
+        <li><a href="#section4">Magic Items</a></li>
+        <li><a href="#section4">Monsters</a></li>
+
+        <h6 style="color:white" >About</h6>
+        <li><a href="#section4">Contact</a></li>
+        <li><a href="#section4">Privacy Policy</a></li>
+        <li><a href="#section4">Licences</a></li>
+      </ul>
+
+     </div>
+    </div>
+
+    <div class="starter-template col-md-10 col-xs-10">
+
 
       {% block content %}
-        <h2>Title</h2>
-        <p>para 1</p>
-        <p>para 2</p>
+
+
       {% endblock %}
+    </div>
 
     </div>
-  </div>
 
 </body>
+
+
+
 </html>

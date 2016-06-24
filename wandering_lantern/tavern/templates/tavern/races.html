@@ -1,0 +1,25 @@
+{% extends 'tavern/base.html' %}
+
+{% block title %}races{% endblock %}
+
+{% block content %}
+<h1>Races</h1>
+
+<p>Showing {{ races|length }} races</p>
+
+
+{% if races %}
+<ul>
+{% for race in races %}
+  <li>
+     <a href="{% url 'tavern:race_details' race.id %}">
+       {{race.name}}
+     </a>
+  </li>
+
+{% endfor %}
+</ul>
+{% endif %}
+
+
+{% endblock %}

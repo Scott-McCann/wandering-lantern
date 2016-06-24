@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from .utils import get_next, get_previous, Die
 from .models import (Character, MeleeWeapon, RangedWeapon, Armor, Item,
  Spells, Class, Race, ClassFeatures)
+from .forms import (CharacterForm, RaceForm, ClassForm, ItemForm, ArmorForm,
+MeleeWeaponForm, RangedWeaponForm, FeatsForm)
 
 def view_index(request):
 
@@ -35,6 +37,41 @@ def view_character_details(request, character_id):
 
 #TODO Character Forms
 
+def create_character_form(request):
+    # if request.method == 'POST':
+    #     form = CharacterForm(request.POST)
+    #     if form.is_valid():
+    #         character = form.save()
+    #         return HttpResponseRedirect('/tavern/characters/' + str(character.id))
+    # else:
+    #     form = CharacterForm()
+    #
+    # return render(request, 'tavern/create_character.html', { 'form':form })
+
+    if request.method == 'POST':
+        characterform = CharacterForm(request.POST, prefix='charcter')
+        if characterform.is_valid():
+            characterform.save()
+    else:
+        characterform = CharacterForm(prefix='character')
+
+    if request.method == 'POST' and not characterform.is_valid():
+        featsform = FeatsForm(request.POST, prefix='feats')
+        characterform = CharacterForm(prefix='character')
+        if featsform.is_valid():
+            featsform.save()
+
+    else:
+        featsform = FeatsForm(prefix='feats')
+
+    return render(request,
+                  'tavern/create_character.html',
+                  {'characterform' : characterform,
+                   'featsform': featsform })
+
+
+
+
 
 #TODO Race views
 def view_races(request):
@@ -62,6 +99,21 @@ def view_race_details(request, race_id):
     return render(request, 'tavern/race_details.html', context)
 #TODO Race Forms
 
+def create_race_form(request):
+    if request.method == 'POST':
+        form= RaceForm(request.POST)
+        if form.is_valid():
+            race = form.save()
+            return HttpResponseRedirect('/tavern/races/' + str(race.id))
+    else:
+        form = RaceForm()
+
+    return render(request, 'tavern/create_race.html', { 'form':form })
+
+
+
+
+
 #TODO Class Views
 def view_classes(request):
 
@@ -88,7 +140,23 @@ def view_class_details(request, class_id):
                 'features': features }
 
     return render(request, 'tavern/class_details.html', context)
+
+
 #TODO Class Forms
+def create_class_form(request):
+    if request.method == 'POST':
+        form= ClassForm(request.POST)
+        if form.is_valid():
+            Class = form.save()
+            return HttpResponseRedirect('/tavern/classs/' + str(Class.id))
+    else:
+        form = ClassForm()
+
+    return render(request, 'tavern/create_class.html', { 'form':form })
+
+
+
+
 
 #TODO Armor Views
 def view_armors(request):
@@ -116,8 +184,25 @@ def view_armor_details(request, armor_id):
     return render(request, 'tavern/armor_details.html', context)
 
 #TODO Armor Forms
+def create_armor_form(request):
+    if request.method == 'POST':
+        form= ArmorForm(request.POST)
+        if form.is_valid():
+            armor = form.save()
+            return HttpResponseRedirect('/tavern/classs/' + str(armor.id))
+    else:
+        form = ArmorForm()
+
+    return render(request, 'tavern/create_class.html', { 'form':form })
+
+
+
+
+
+
 
 #TODO Item Views
+
 def view_items(request):
 
     items =  Item.objects.all()
@@ -141,7 +226,23 @@ def view_item_details(request, item_id):
                 'previous_id': previous_id }
 
     return render(request, 'tavern/item_details.html', context)
+
 #TODO Item Forms
+def create_item_form(request):
+    if request.method == 'POST':
+        form= ItemForm(request.POST)
+        if form.is_valid():
+            item = form.save()
+            return HttpResponseRedirect('/tavern/items/' + str(Item.id))
+    else:
+        form = ItemForm()
+
+    return render(request, 'tavern/create_item.html', { 'form':form })
+
+
+
+
+
 
 # MeleeWeapon Views
 def view_melee_weapons(request):
@@ -169,6 +270,24 @@ def view_melee_weapon_details(request, meleeweapon_id):
     return render(request, 'tavern/melee_weapon_details.html', context)
 #TODO MeleeWeapon Forms
 
+def create_melee_weapon_form(request):
+    if request.method == 'POST':
+        form= MeleeWeaponForm(request.POST)
+        if form.is_valid():
+            item = form.save()
+            return HttpResponseRedirect('/tavern/melee_weapons/' + str(meleeweapon.id))
+    else:
+        form = MeleeWeaponForm()
+
+    return render(request, 'tavern/create_melee_weapon.html', { 'form':form })
+
+
+
+
+
+
+
+
 #TODO RangedWeapon Views
 def view_ranged_weapons(request):
 
@@ -194,6 +313,24 @@ def view_ranged_weapon_details(request, rangedweapon_id):
 
     return render(request, 'tavern/ranged_weapon_details.html', context)
 #TODO RangedWeapon Forms
+def create_ranged_weapon_form(request):
+    if request.method == 'POST':
+        form= RangedeaponForm(request.POST)
+        if form.is_valid():
+            item = form.save()
+            return HttpResponseRedirect('/tavern/ranged_weapons/' + str(rangedweapon.id))
+    else:
+        form = RangedWeaponForm()
+
+    return render(request, 'tavern/create_ranged_weapon.html', { 'form':form })
+
+
+
+
+
+
+
+
 
 #TODO Spell Views
 def view_spells(request):
