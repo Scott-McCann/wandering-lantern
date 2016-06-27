@@ -13,6 +13,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
   <link rel="stylesheet" href="{% static 'tavern/styles/tavern.css' %}"/>
+  <script src="{% static 'tavern/tavern.js' %}"></script>
   {% bootstrap_css %}
   {% bootstrap_javascript %}
   <link rel="icon" href="{% static 'tavern/favicon.ico' %}"/>
@@ -21,7 +22,7 @@
 
 </head>
 
-<body background="{% static 'tavern/an-old-and-worn-parchment-paper-600x728.jpg' %}">
+<body class="red-gradient">
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -53,46 +54,21 @@
     </div>
 
   </nav>
-         <!-- sidebar -->
 
 
 
 
 
 
+    <div class="container black-and-white text-center">
 
-  <div class="container-md-12 col-xs-12" style="padding-left:0px;">
-    <div class="col-md-2 col-xs-2" id="sidebar" role="navigation" style="padding-left:0px; background:darkred">
-     <div data-spy="affix col-xs-2" data-offset-top="50">
-      <ul class="nav nav-pills nav-stacked text-center" id="sidebar-nav">
-        <h3 style="color:white">The Tavern</h3>
-        <li><a href="#">Tavern</a></li>
-        <li><a href="#section1">Spells</a></li>
-        <li><a href="#section2">Weapons</a></li>
-        <li><a href="#section3">Armors</a></li>
-        <li><a href="#section4">Items</a></li>
-        <li><a href="#section4">Classes</a></li>
-        <li><a href="#section4">Races</a></li>
-        <li><a href="#section4">Magic Items</a></li>
-        <li><a href="#section4">Monsters</a></li>
 
-        <h6 style="color:white" >About</h6>
-        <li><a href="#section4">Contact</a></li>
-        <li><a href="#section4">Privacy Policy</a></li>
-        <li><a href="#section4">Licences</a></li>
-      </ul>
-
-     </div>
-    </div>
-
-    <div class="starter-template col-md-10 col-xs-10">
 
 
       {% block content %}
 
 
       {% endblock %}
-    </div>
 
     </div>
 
