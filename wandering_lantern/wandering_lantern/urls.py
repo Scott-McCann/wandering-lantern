@@ -18,6 +18,7 @@ from django.contrib import admin
 from tavern import views
 
 urlpatterns = [
+    url(r'^', include('django.contrib.auth.urls')),
     url(r'^$', views.view_index, name='index' ),
     url(r'tavern/', include('tavern.urls')),
     url(r'^admin/', admin.site.urls),

@@ -4,7 +4,12 @@ from .utils import get_next, get_previous, Die
 from .models import (Character, MeleeWeapon, RangedWeapon, Armor, Item,
  Spells, Class, Race, ClassFeatures)
 from .forms import (CharacterForm, RaceForm, ClassForm, ItemForm, ArmorForm,
-MeleeWeaponForm, RangedWeaponForm, FeatsForm)
+MeleeWeaponForm, RangedWeaponForm, FeatsForm, NewUserForm)
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required, permission_required
+from django.core.exceptions import PermissionDenied
+
+
 
 def view_index(request):
 
@@ -18,6 +23,7 @@ def view_characters(request):
 
     return render(request, 'tavern/characters.html', context)
 
+@login_required
 def view_character_details(request, character_id):
 
     try:
@@ -37,6 +43,7 @@ def view_character_details(request, character_id):
 
 #TODO Character Forms
 
+@login_required
 def create_character_form(request):
     # if request.method == 'POST':
     #     form = CharacterForm(request.POST)
@@ -81,6 +88,7 @@ def view_races(request):
 
     return render(request, 'tavern/races.html', context)
 
+@login_required
 def view_race_details(request, race_id):
 
     try:
@@ -99,6 +107,7 @@ def view_race_details(request, race_id):
     return render(request, 'tavern/race_details.html', context)
 #TODO Race Forms
 
+@login_required
 def create_race_form(request):
     if request.method == 'POST':
         form= RaceForm(request.POST)
@@ -122,6 +131,7 @@ def view_classes(request):
 
     return render(request, 'tavern/classes.html', context)
 
+@login_required
 def view_class_details(request, class_id):
 
     try:
@@ -143,6 +153,7 @@ def view_class_details(request, class_id):
 
 
 #TODO Class Forms
+@login_required
 def create_class_form(request):
     if request.method == 'POST':
         form= ClassForm(request.POST)
@@ -166,6 +177,8 @@ def view_armors(request):
 
     return render(request, 'tavern/armors.html', context)
 
+
+@login_required
 def view_armor_details(request, armor_id):
 
     try:
@@ -184,6 +197,8 @@ def view_armor_details(request, armor_id):
     return render(request, 'tavern/armor_details.html', context)
 
 #TODO Armor Forms
+
+@login_required
 def create_armor_form(request):
     if request.method == 'POST':
         form= ArmorForm(request.POST)
@@ -210,6 +225,8 @@ def view_items(request):
 
     return render(request, 'tavern/items.html', context)
 
+
+@login_required
 def view_item_details(request, item_id):
 
     try:
@@ -228,6 +245,7 @@ def view_item_details(request, item_id):
     return render(request, 'tavern/item_details.html', context)
 
 #TODO Item Forms
+@login_required
 def create_item_form(request):
     if request.method == 'POST':
         form= ItemForm(request.POST)
@@ -252,6 +270,8 @@ def view_melee_weapons(request):
 
     return render(request, 'tavern/melee_weapons.html', context)
 
+
+@login_required
 def view_melee_weapon_details(request, meleeweapon_id):
 
     try:
@@ -269,7 +289,7 @@ def view_melee_weapon_details(request, meleeweapon_id):
 
     return render(request, 'tavern/melee_weapon_details.html', context)
 #TODO MeleeWeapon Forms
-
+@login_required
 def create_melee_weapon_form(request):
     if request.method == 'POST':
         form= MeleeWeaponForm(request.POST)
@@ -289,6 +309,8 @@ def create_melee_weapon_form(request):
 
 
 #TODO RangedWeapon Views
+
+
 def view_ranged_weapons(request):
 
     ranged_weapons = RangedWeapon.objects.all()
@@ -296,6 +318,8 @@ def view_ranged_weapons(request):
 
     return render(request, 'tavern/ranged_weapons.html', context)
 
+
+@login_required
 def view_ranged_weapon_details(request, rangedweapon_id):
 
     try:
@@ -312,7 +336,11 @@ def view_ranged_weapon_details(request, rangedweapon_id):
                 'previous_id': previous_id}
 
     return render(request, 'tavern/ranged_weapon_details.html', context)
+
+
 #TODO RangedWeapon Forms
+
+@login_required
 def create_ranged_weapon_form(request):
     if request.method == 'POST':
         form= RangedeaponForm(request.POST)
@@ -340,6 +368,7 @@ def view_spells(request):
 
     return render(request, 'tavern/spell.html', context)
 
+@login_required
 def view_spell_details(request, meleeweapon_id):
 
     try:
@@ -362,7 +391,7 @@ def view_spell_details(request, meleeweapon_id):
 
 
 
-
+@login_required
 def view_dice_roller(request, roll=None):
     D3 = Die.d3
     D4 = Die.d4
@@ -390,3 +419,19 @@ def view_dice_roller(request, roll=None):
         context['result'] = context[roll]
 
     return render(request, 'tavern/diceroller.html', context)
+
+
+
+
+
+
+
+def new_user(request):
+    form = NewUserForm(request.POST)
+    if form.is_valid():
+        user_name = form.cleaned_data['user_name']
+        password = form.cleaned_data['password']
+        user = User.objects.create_user(username=user_name, password=password)
+        return HttpResponseRedirect('/login/')
+
+    return render(request, 'registration/new_user.html', {'form': form})

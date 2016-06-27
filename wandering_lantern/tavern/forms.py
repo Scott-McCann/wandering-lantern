@@ -2,7 +2,9 @@ from django import forms
 from .models import (Character, Race, Class, Item, Spells, Armor, RangedWeapon,
 MeleeWeapon, Feats)
 
-
+class NewUserForm(forms.Form):
+    user_name = forms.CharField(label='Username', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username', 'required': False}))
+    password = forms.CharField(label='Password', max_length=100)
 
 class ContactForm(forms.Form):
     subject = forms.CharField(max_length=200)
