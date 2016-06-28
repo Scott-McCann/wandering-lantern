@@ -1,5 +1,5 @@
 {% extends 'tavern/base.html' %}
-
+{% load bootstrap3 %}
 {% block title %}Create Melee Weapon{% endblock %}
 
 {% block content %}
@@ -7,10 +7,11 @@
 <form class=action="{% url 'tavern:create_melee_weapon' %}" method='post'>
 {% csrf_token %}
 
-  <table class="table table-bordered table-condensed table-hover">
-{{ form.as_table }}
-</table>
-<input type='submit' value="submit" />
+{% bootstrap_form form layout='horizontal' %}
+
+{% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
+
+</form>
 
 </form>
 

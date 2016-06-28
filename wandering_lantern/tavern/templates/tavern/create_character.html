@@ -1,5 +1,5 @@
 {% extends 'tavern/base.html' %}
-
+{% load bootstrap3 %}
 {% block title %}Create Character{% endblock %}
 
 {% block content %}
@@ -7,20 +7,16 @@
 
 <form action="{% url 'tavern:create_character' %}" method="post">
     {% csrf_token %}
-  <div class="col-md-5">
-    <h1>Create Character</h1>
-    <table class="table table-bordered table-striped" style="background:darkgrey">
-    {{ characterform.as_table }}
-  </table>
-  <input type="submit" name="{{characterform.prefix}}" value="Submit" />
 
+{% csrf_token %}
+<div>
+  <h1>Create Character</h1>
+{% bootstrap_form characterform layout='horizontal' %}
 </div>
-<div class="col-md-5">
-  <h1>Add Feat</h1>
-    <table class="table table-bordered table-striped" style="background:darkgrey">
-    {{ featsform.as_table }}
-  </table>
-    <input type="submit" name="{{featsform.prefix}}" value="Submit" />
-  </div>
+<div>
+  <h1> Create Feat </h1>
+{% bootstrap_form featsform layout='horizontal' %}
+</div>
+{% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
 </form>
 {% endblock %}
