@@ -1,0 +1,1 @@
+web: gunicorn wandering_lantern.wsgi --log-file -

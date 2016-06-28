@@ -8,6 +8,7 @@ MeleeWeaponForm, RangedWeaponForm, FeatsForm, NewUserForm)
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.models import User
 
 
 

@@ -1,4 +1,3 @@
-
 body {
   padding-top: 50px;
 }
@@ -10,7 +9,17 @@ body {
 
 .black-and-white {
     color:white;
-    background-color:black;
+    background-color:#1f1f14;
+}
+
+.red-table{
+  margin:0px;
+  background-color:darkred;
+}
+
+.zero-padding {
+  padding-left:0px;
+  padding-right:0px;
 }
 
 .red-gradient{

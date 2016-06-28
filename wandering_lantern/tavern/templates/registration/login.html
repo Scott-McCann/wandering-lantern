@@ -14,7 +14,7 @@
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
-
+<div class="col-md-offset-4">
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 <table>
@@ -27,12 +27,19 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
-
-<input type="submit" value="login" />
+<div class="col-md-3">
+<input type="submit" value="login" style="background-color:darkred" />
 <input type="hidden" name="next" value="{{ next }}" />
+</div>
 </form>
+</div>
 
+<div class="row">
+  <div class="col-md-12">
+<p><a href="{% url 'tavern:create-account' %}">Create Account?</a></p>
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+</div>
+</div>
 
 {% endblock %}
