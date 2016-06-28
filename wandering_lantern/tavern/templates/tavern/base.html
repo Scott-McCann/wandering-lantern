@@ -37,18 +37,18 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="{% url 'tavern:characters-index' %}"><img src="{% static 'tavern/Character.png' %}" height="32" width="32"> Characters</a></li>
-          <li><a href="{% url 'tavern:races-index' %}"><img src="{% static 'tavern/race.png' %}" height="32" width="32"> Race</a></li>
-          <li><a href="{% url 'tavern:classes-index' %}"><img src="{% static 'tavern/class.png' %}" height="32" width="32"> Class</a></li>
-          <li><a href="{% url 'tavern:melee_weapons-index' %}"><img src="{% static 'tavern/Hammer.png' %}" height="32" width="32"> Melee</a></li>
-          <li><a href="{% url 'tavern:ranged_weapons-index' %}"><img src="{% static 'tavern/Bow.png' %}" height="32" width="32"> Ranged</a></li>
+          <li><a href="{% url 'tavern:characters-index' %}"><img src="{% static 'tavern/dark-squad.png' %}" height="32" width="32"> Characters</a></li>
+          <li><a href="{% url 'tavern:races-index' %}"><img src="{% static 'tavern/dna1.png' %}" height="32" width="32"> Race</a></li>
+          <li><a href="{% url 'tavern:classes-index' %}"><img src="{% static 'tavern/anatomy.png' %}" height="32" width="32"> Class</a></li>
+          <li><a href="{% url 'tavern:melee_weapons-index' %}"><img src="{% static 'tavern/crossed-swords.png' %}" height="32" width="32"> Melee</a></li>
+          <li><a href="{% url 'tavern:ranged_weapons-index' %}"><img src="{% static 'tavern/high-shot.png' %}" height="32" width="32"> Ranged</a></li>
           <li><a href="{% url 'tavern:items-index' %}"><img src="{% static 'tavern/Bottle.png' %}" height="32" width="32"> Item</a></li>
-          <li><a href="{% url 'tavern:armors-index' %}"><img src="{% static 'tavern/Armor.png' %}" height="32" width="32"> Armor</a></li>
-          <li><a href="{% url 'tavern:diceroller' %}"><img src="{% static 'tavern/D20.png' %}" height="32" width="32"> Dice</a></li>
+          <li><a href="{% url 'tavern:armors-index' %}"><img src="{% static 'tavern/lamellar.png' %}" height="32" width="32"> Armor</a></li>
+          <li><a href="{% url 'tavern:diceroller' %}"><img src="{% static 'tavern/dice-twenty-faces-twenty.png' %}" height="32" width="32"> Dice</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}"><img src="{% static 'tavern/Logout.png' %}" height="32" width="32"> Logout</a></li>
 {% else %}
-          <li><a href="{% url 'login' %}"><img src="{% static 'tavern/Login.png' %}" height="32" width="32"> Login</a></li>
+          <li><a href="{% url 'login' %}"><img src="{% static 'tavern/boss-key.png' %}" height="32" width="32"> Login</a></li>
 {% endif %}
 
         </ul>

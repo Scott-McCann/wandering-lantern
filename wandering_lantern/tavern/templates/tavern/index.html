@@ -1,7 +1,50 @@
 {% extends 'tavern/base.html' %}
-
+{% load staticfiles %}
 {% block content %}
+<div class="container text-center">
+  <h1>Wandering Lantern</h1>
+  <div class="row">
+    <div class="col-md-4 col-xs-4"><p>Character</p>
+    <a href="{% url 'tavern:characters-index' %}"><img src="{% static 'tavern/dark-squad.png' %}" height="128px" width="128px"></a>
+    </div>
 
+    <div class="col-md-4 col-xs-4"><p>Race</p>
+      <a href="{% url 'tavern:races-index' %}"><img src="{% static 'tavern/dna1.png' %}" height="128px" width="128px"></a>
+    </div>
+
+    <div class="col-md-4 col-xs-4"><p>Class</p>
+      <a href="{% url 'tavern:classes-index' %}"><img src="{% static 'tavern/anatomy.png' %}" height="128px" width="128px"></a>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:25px">
+    <div class="col-md-4 col-xs-4"><p>Melee</p>
+      <a href="{% url 'tavern:melee_weapons-index' %}"><img src="{% static 'tavern/crossed-swords.png' %}" height="128px" width="128px"></a>
+    </div>
+    <div class="col-md-4 col-xs-4"><p>Ranged</p>
+      <a href="{% url 'tavern:ranged_weapons-index' %}"><img src="{% static 'tavern/high-shot.png' %}" height="128px" width="128px"></a>
+    </div>
+    <div class="col-md-4 col-xs-4"><p>Armor</p>
+      <a href="{% url 'tavern:armors-index' %}"><img src="{% static 'tavern/lamellar.png' %}" height="128px" width="128px"></a>
+    </div>
+  </div>
+
+    <div class="row" style="margin-top:25px">
+      <div class="col-md-4 col-xs-4"><p>Item</p>
+        <a href="{% url 'tavern:items-index' %}"><img src="{% static 'tavern/spiral-bottle.png' %}" height="128px" width="128px"></a>
+      </div>
+      <div class="col-md-4 col-xs-4"><p>Dice Roller</p>
+        <a href="{% url 'tavern:diceroller' %}"><img src="{% static 'tavern/dice-twenty-faces-twenty.png' %}" height="128px" width="128px"></a>
+      </div>
+      <div class="col-md-4 col-xs-4"><p>Create</p>
+        <a href="{% url 'tavern:create_character' %}"><img src="{% static 'tavern/anvil-impact.png' %}" height="128px" width="128px"></a>
+      </div>
+
+</div>
+
+
+
+</div>
 
 
 {% endblock %}
