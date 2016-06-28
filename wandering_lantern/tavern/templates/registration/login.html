@@ -17,7 +17,7 @@
 <div class="col-md-offset-4" style="padding-top:25px">
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
-<table>
+<table style="color:red">
 <tr>
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
