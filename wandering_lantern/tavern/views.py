@@ -16,6 +16,7 @@ def view_index(request):
 
     return render(request, 'tavern/index.html')
 
+
 #Charcter Views
 def view_characters(request):
 

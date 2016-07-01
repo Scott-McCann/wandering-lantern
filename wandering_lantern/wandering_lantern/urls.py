@@ -18,7 +18,7 @@ from django.contrib import admin
 from tavern import views
 from rest_framework import routers
 from tavern.api import (UserViewSet, ItemViewSet, CharacterViewSet,
-MeleeWeaponViewSet, RangedWeaponViewSet, ArmorViewSet, ClassViewSet, RaceViewSet)
+MeleeWeaponViewSet, RangedWeaponViewSet, ArmorViewSet, ClassViewSet, RaceViewSet, FeatsViewSet)
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -29,6 +29,7 @@ router.register(r'Items', ItemViewSet)
 router.register(r'Meleeweapons', MeleeWeaponViewSet)
 router.register(r'Rangedweapons', RangedWeaponViewSet)
 router.register(r'Armors', ArmorViewSet)
+router.register(r'Feats', FeatsViewSet)
 
 
 urlpatterns = [

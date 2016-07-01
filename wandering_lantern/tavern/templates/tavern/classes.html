@@ -9,16 +9,21 @@
 
 
 {% if classes %}
-<ul>
+<table class="table table-bordered table-hover red-table text-left">
+  <tr>
+    <th>Name</th>
+    <th>Hit Die</th>
+    <th>User</th>
+  </tr>
 {% for class in classes %}
-  <li>
-     <a href="{% url 'tavern:class_details' class.id %}">
-       {{class.name}}
-     </a>
-  </li>
+<tr>
 
+  <td><a href="{% url 'tavern:class_details' class.id %}">{{class.name}}</a></td>
+  <td>{{class.hit_die}}</td>
+  <td>{{class.user}}</td>
+</tr>
 {% endfor %}
-</ul>
+</table>
 {% endif %}
 
 

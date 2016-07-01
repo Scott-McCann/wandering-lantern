@@ -10,7 +10,7 @@
 <seciton>
   <div class="row">
     <div class="col-md-4">
-    <img src="{% static 'tavern/fighter.jpg' %}" height="225" width="340">
+    <img src="{% static 'tavern/fighter.jpg' %}" height="300px" width="320px">
     </div>
   <div class="col-md-4">
     <h1>{{class.name}}</h1>
@@ -21,7 +21,7 @@
 
 
       <h2 style="background:black; color:white">Description</h2>
-      <div style="background:darkgrey; border-style:inset; border-color:darkred; padding:10px">
+      <div style="border-style:inset; border-color:darkred; padding:10px">
       <p>{{class.description}}</p>
     </div>
 
@@ -30,7 +30,7 @@
 
 
   <div>
-    <table class="table" style=" border-style:inset; border-color:darkred">
+    <table class="table table-bordered red-table" style="border-style:inset;">
       <tr style="background:black; color:white">
         <th>Class Features</th>
         <th>Level</th>
@@ -40,7 +40,7 @@
      <td>{{feature.name}}</td>
      <td>{{feature.level}}</td>
    </tr>
-   <tr style="background:darkgrey">
+   <tr>
      <td>{{feature.description}}</td>
      <td></td>
    </tr>
@@ -55,7 +55,7 @@
 
 <div class="row">
     <div class="col-md-3">
-      <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+      <table class="table red-table" style="border-style:inset;">
         <tr style="background-color:black; color:white">
           <th>Skill Proficiencies</th>
         </tr>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="col-md-2">
-      <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+      <table class="table red-table" style="border-style:inset;border-color:darkred">
 
         <tr style="background-color:black; color:white">
           <th>Simple Melee Proficiencies</th>
@@ -85,7 +85,7 @@
 
 
 
-      <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+      <table class="table red-table" style="border-style:inset;border-color:darkred">
 
         <tr style="background-color:black; color:white">
           <th>Martial Melee Proficiencies</th>
@@ -101,7 +101,7 @@
 
 
        <div class="col-md-2">
-         <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+         <table class="table red-table" style="border-style:inset;border-color:darkred">
 
            <tr style="background-color:black; color:white">
              <th>Martial Ranged Proficiencies</th>
@@ -113,7 +113,7 @@
           {% endfor %}
         </table>
 
-        <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+        <table class="table red-table" style="border-style:inset;border-color:darkred">
 
             <tr style="background-color:black; color:white">
               <th>Simple Ranged Proficiencies</th>
@@ -128,7 +128,7 @@
           </div>
 
          <div class="col-md-2">
-           <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+           <table class="table red-table" style="border-style:inset;border-color:darkred">
 
              <tr style="background-color:black; color:white">
                <th>Armor Proficiencies</th>

@@ -9,19 +9,66 @@
 <section>
 
   <div class="row">
-    <div class="col-md-4">
-    <img src="{% static 'tavern/fighter.jpg' %}" height="225" width="340">
+    <div class="col-md-3">
+    <img src="{% static 'tavern/fighter.jpg' %}" height="auto" width="100%">
     </div>
-  <div class="col-md-4">
     <h1>{{race.name}}</h1>
-    <h3>Hit Die: {{race.hit_die}}</h3>
-    <h3>Imporovement Levels: {{race.ability_score_improvement_levels}}</h3>
+
+  <div class="col-md-3">
+    <table class="table table-bordered table-hover red-table">
+      <tr>
+        <th>Size</th>
+        <td>{{race.size}}</td>
+      </tr>
+      <tr>
+        <th>Speed</th>
+        <td>{{race.speed}}</td>
+      </tr>
+      <tr>
+        <th>Vision</th>
+        <td>{{race.vision}}</td>
+      </tr>
+    </table>
   </div>
-</div>
 
 
+
+  <div class="col-md-3">
+    <table class="table table-bordered table-condense red-table">
+      <tr>
+        <th>Strength</th>
+        <td>{{race.str_mod}}</td>
+      </tr>
+      <tr>
+        <th>Dexterity</th>
+        <td>{{race.dex_mod}}</td>
+      </tr>
+      <tr>
+        <th>Wisdom</th>
+        <td>{{race.wis_mod}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-md-3">
+    <table class="table table-bordered table-condense red-table">
+      <tr>
+        <th>Intelligence</th>
+        <td>{{race.int_mod}}</td>
+      </tr>
+      <tr>
+        <th>Charasima</th>
+        <td>{{race.cha_mod}}</td>
+      </tr>
+      <tr>
+        <th>Constitution</th>
+        <td>{{race.con_mod}}</td>
+      </tr>
+    </table>
+   </div>
+  </div>
       <h2 style="background:black; color:white">Description</h2>
-      <div style="background:darkgrey; border-style:inset; border-color:darkred; padding:10px">
+      <div style="background:darkred; border-style:inset; border-color:black; padding:10px">
       <p>{{race.description}}</p>
     </div>
 
@@ -31,18 +78,18 @@
 
 
   <div>
-    <table class="table" style=" border-style:inset; border-color:darkred">
+    <table class="table table-bordered red-table" style=" border-style:inset; border-color:darkred">
       <tr style="background:black; color:white">
         <th>Race Features</th>
         <th>Level</th>
       </tr>
     {% for feature in features %}
     <tr style="background:darkred; color:white">
-     <td>{{feature.name}}</td>
-     <td>{{feature.level}}</td>
+     <td>{{race.feature.name}}</td>
+     <td>{{race.feature.level}}</td>
    </tr>
    <tr style="background:darkgrey">
-     <td>{{feature.description}}</td>
+     <td>{{race.feature.description}}</td>
      <td></td>
    </tr>
 
@@ -56,8 +103,8 @@
 
 <div class="row">
     <div class="col-md-3">
-      <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
-        <tr style="background-color:black; color:white">
+      <table class="table table-bordered red-table" style="border-style:inset">
+        <tr>
           <th>Skill Proficiencies</th>
         </tr>
       {% for skill_prof in race.skill_prof.all %}
@@ -68,17 +115,16 @@
     </table>
     </div>
 
-    <div class="col-md-2">
-      <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
-
-        <tr style="background-color:black; color:white">
+    <div class="col-md-3">
+      <table class="table table-bordered red-table" style="border-style:inset">
+        <tr>
           <th>Simple Melee Proficiencies</th>
         </tr>
 
     {% for simple_melee_prof in race.simple_melee_prof.all %}
-    <tr>
-       <td>{{simple_melee_prof.weapon_type}}</td>
-     </tr>
+        <tr>
+          <td>{{simple_melee_prof.weapon_type}}</td>
+        </tr>
      {% endfor %}
 
       </table>
@@ -86,9 +132,9 @@
 
 
 
-      <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+      <table class="table table-bordered red-table" style="border-style:inset">
 
-        <tr style="background-color:black; color:white">
+        <tr>
           <th>Martial Melee Proficiencies</th>
         </tr>
         {% for martial_melee_prof in race.martial_melee_prof.all %}
@@ -101,10 +147,10 @@
       </div>
 
 
-       <div class="col-md-2">
-         <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+       <div class="col-md-3">
+        <table class="table table-bordered red-table">
 
-           <tr style="background-color:black; color:white">
+           <tr>
              <th>Martial Ranged Proficiencies</th>
            </tr>
            {% for martial_ranged_prof in race.martial_ranged_prof.all %}
@@ -114,24 +160,24 @@
           {% endfor %}
         </table>
 
-        <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+        <table class="table table-bordered red-table" style="border-style:inset">
 
-            <tr style="background-color:black; color:white">
+            <tr>
               <th>Simple Ranged Proficiencies</th>
             </tr>
           {% for simple_ranged_prof in race.simple_ranged_prof.all %}
             <tr>
-          <td>{{simple_ranged_prof.weapon_type}}</td>
-        </tr>
+              <td>{{simple_ranged_prof.weapon_type}}</td>
+            </tr>
         {% endfor %}
 
       </table>
           </div>
 
-         <div class="col-md-2">
-           <table class="table table" style="background:lightgrey;border-style:inset;border-color:darkred">
+         <div class="col-md-3">
+           <table class="table table-bordered red-table" style="border-style:inset">
 
-             <tr style="background-color:black; color:white">
+             <tr>
                <th>Armor Proficiencies</th>
              </tr>
              {% for armor_proficiency in race.armor_proficiencies.all %}
@@ -143,7 +189,7 @@
 
        </table>
          </div>
-  </div>
+       </div>
 
 
 

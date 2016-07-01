@@ -139,6 +139,7 @@ class Race(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     description = models.TextField(null=True)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+
     def __str__(self):
         return self.name
 

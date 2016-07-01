@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers, viewsets
 from .models import (Character, MeleeWeapon, RangedWeapon, Armor, Item,
-Spells, Class, Race, ClassFeatures)
+Spells, Class, Race, ClassFeatures, Feats)
 
 # Serializers define the API representation.
 class UserSerializer(serializers.ModelSerializer):
@@ -45,6 +45,11 @@ class RaceSerializer(serializers.ModelSerializer):
         model = Race
         fields = "__all__"
 
+class FeatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feats
+        fields = "__all__"
+
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -77,3 +82,7 @@ class ClassViewSet(viewsets.ModelViewSet):
 class RaceViewSet(viewsets.ModelViewSet):
     queryset = Race.objects.all()
     serializer_class = RaceSerializer
+
+class FeatsViewSet(viewsets.ModelViewSet):
+    queryset = Feats.objects.all()
+    serializer_class = FeatsSerializer

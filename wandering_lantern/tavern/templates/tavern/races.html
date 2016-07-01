@@ -9,16 +9,25 @@
 
 
 {% if races %}
-<ul>
-{% for race in races %}
-  <li>
-     <a href="{% url 'tavern:race_details' race.id %}">
-       {{race.name}}
-     </a>
-  </li>
-
+<table class="table red-table table-bordered text-left">
+  <tr>
+    <th>Name</th>
+    <th>Size</th>
+    <th>Speed</th>
+    <th>Vision</th>
+    <th>User</th>
+  </tr>
+  {% for race in races %}
+  <tr>
+    <td><a href="{% url 'tavern:race_details' race.id %}"> {{race.name}}</a></td>
+    <td>{{race.size}}</td>
+    <td>{{race.speed}}</td>
+    <td>{{race.vision}}</td>
+    <td>{{race.user}}</td>
+  </tr>
 {% endfor %}
-</ul>
+</table>
+
 {% endif %}
 
 

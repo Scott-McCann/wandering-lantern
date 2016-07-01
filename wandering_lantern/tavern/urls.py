@@ -47,5 +47,6 @@ urlpatterns = [
     url(r'^tools/diceroller/$', views.view_dice_roller, name='diceroller'),
     url(r'^tools/diceroller/(?P<roll>D[0-9]+)$', views.view_dice_roller, name='diceroller-result'),
 
+
     url(r'^createaccount/$', views.new_user, name='create-account',)
 ]
